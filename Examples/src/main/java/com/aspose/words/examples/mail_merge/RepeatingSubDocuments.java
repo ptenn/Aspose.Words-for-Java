@@ -2,6 +2,7 @@ package com.aspose.words.examples.mail_merge;
 
 import com.aspose.words.Bookmark;
 import com.aspose.words.Document;
+import com.aspose.words.ImportFormatMode;
 import com.aspose.words.examples.Utils;
 import com.aspose.words.net.System.Data.DataTable;
 
@@ -25,6 +26,12 @@ public class RepeatingSubDocuments
         // Pull 3 Orders from Northwind Database
         int[] orderIds = new int[] { 10406, 10412, 10444 };
 
+
+        Document subDoc = new Document();
+
+        // See what happens if 0 Orders
+//        int[] orderIds = new int[] { };
+
         for ( int orderId : orderIds) {
 
             Document orderDoc = new Document(dataDir + "MailMerge.ExecuteWithRegions.doc");
@@ -37,11 +44,11 @@ public class RepeatingSubDocuments
             DataTable orderDetailsTable = getTestOrderDetails(orderId, "ExtendedPrice DESC");
             orderDoc.getMailMerge().executeWithRegions(orderDetailsTable);
 
+            subDoc.appendDocument(orderDoc, ImportFormatMode.KEEP_SOURCE_FORMATTING);
             insertSubDocumentAtBookmark(doc, orderDoc, "SubDocumentBookmark");
         }
 
-//        subDoc.save(dataDir + "CasePrint SubDocument out.doc");
-        //insertSubDocumentAtBookmark(doc, subDoc, "SubDocumentBookmark");
+        insertSubDocumentAtBookmark(doc, subDoc, "SubDocumentBookmark");
 
 
         doc.save(dataDir + "RepeatingSubDocuments_Out.doc");
