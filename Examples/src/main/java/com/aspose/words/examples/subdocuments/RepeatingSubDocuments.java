@@ -1,9 +1,10 @@
-package com.aspose.words.examples.mail_merge;
+package com.aspose.words.examples.subdocuments;
 
 import com.aspose.words.Bookmark;
 import com.aspose.words.Document;
 import com.aspose.words.ImportFormatMode;
 import com.aspose.words.examples.Utils;
+import com.aspose.words.examples.mail_merge.ExecuteMailMergeWithRegions;
 import com.aspose.words.net.System.Data.DataTable;
 
 import static com.aspose.words.examples.programming_documents.document.InsertDocumentIntoAnotherDocument.insertDocument;
@@ -45,7 +46,6 @@ public class RepeatingSubDocuments
             orderDoc.getMailMerge().executeWithRegions(orderDetailsTable);
 
             subDoc.appendDocument(orderDoc, ImportFormatMode.KEEP_SOURCE_FORMATTING);
-            insertSubDocumentAtBookmark(doc, orderDoc, "SubDocumentBookmark");
         }
 
         insertSubDocumentAtBookmark(doc, subDoc, "SubDocumentBookmark");
